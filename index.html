@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Newt Editz | Support & Community</title>
+    <title>Newt Editz | Official Project</title>
     <style>
         * {
             box-sizing: border-box;
@@ -11,80 +11,107 @@
             padding: 0;
         }
         body {
-            background-color: #0d0d13;
-            color: #ffffff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #090a0f;
+            color: #f1f2f6;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 24px;
         }
         .container {
             width: 100%;
-            max-width: 600px;
+            max-width: 480px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 25px;
+            gap: 24px;
             text-align: center;
         }
-        h1 {
-            font-size: 2.5rem;
-            color: #00ffff;
-            text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
-            margin-bottom: 10px;
+        
+        /* Jiddiy va qimmat sarlavha (Neon emas, metall/kumush effekt) */
+        header h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            background: linear-gradient(180deg, #ffffff 0%, #a5abb6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 15px 0 5px 0;
+            text-transform: uppercase;
         }
-        /* Ad Zones */
+
+        /* Reklama zonalari */
         .ad-zone {
             width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px dashed #333;
-            padding: 10px 0;
-            min-height: 70px;
-            border-radius: 8px;
+            min-height: 60px;
         }
-        /* Donation Box Design */
+
+        /* PREMIUM VA JIDDIY BLOCK (Minimalist Dark Style) */
         .donation-box {
-            background: rgba(20, 20, 30, 0.8);
-            border: 2px solid #ff007f;
-            box-shadow: 0 0 15px rgba(255, 0, 127, 0.4);
+            background: #12141c;
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 16px;
-            padding: 30px 20px;
+            padding: 32px 24px;
             width: 100%;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        .donation-box:hover {
+            border-color: rgba(0, 255, 255, 0.3);
+            transform: translateY(-2px);
         }
         .donation-box p {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            color: #e0e0e0;
+            font-size: 1rem;
+            margin-bottom: 24px;
+            color: #9cb1c9;
+            line-height: 1.6;
         }
+        
+        /* JIDDIY CYBERPUNK TUGMA (Harakatlanuvchi neon emas, qat'iy quyuq rang) */
         .donation-btn {
-            display: inline-block;
-            background: linear-gradient(45deg, #ff007f, #7f00ff);
-            color: white;
+            display: block;
+            background: #00ffff;
+            color: #090a0f;
             text-decoration: none;
-            font-size: 1.3rem;
-            font-weight: bold;
-            padding: 15px 35px;
-            border-radius: 50px;
-            box-shadow: 0 0 10px #ff007f, 0 0 20px #7f00ff;
-            transition: transform 0.2s, box-shadow 0.2s;
+            font-size: 1.15rem;
+            font-weight: 700;
+            padding: 16px 28px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         .donation-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px #ff007f, 0 0 40px #7f00ff;
+            background: #ffffff;
+            box-shadow: 0 6px 25px rgba(255, 255, 255, 0.3);
         }
-        /* Content Box */
+
+        /* JIDDIY CONTENT BOX */
         .content-box {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid #00ffff;
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+            background: #12141c;
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 16px;
-            padding: 25px;
+            padding: 28px 24px;
             width: 100%;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+        }
+        .content-box h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+        .content-box p {
+            font-size: 0.95rem;
+            color: #6c7a8c;
+            line-height: 1.6;
         }
     </style>
 </head>
@@ -108,21 +135,21 @@
 
         <!-- HEADER -->
         <header>
-            <h1>NEWT EDITZ</h1>
+            <h1>Newt Editz</h1>
         </header>
 
         <!-- DONATION BLOCK -->
         <div class="donation-box">
-            <p>If you enjoy my edits and want to support my work, you can donate here! ❤️</p>
+            <p>If you appreciate the cinematic quality of my edits and want to support the workflow, you can leave a tip below. Your support drives the creation of new content.</p>
             <a href="https://www.donationalerts.com/r/newt_editz" target="_blank" class="donation-btn">
-                ☕ Support My Work / Donate
+                Support Project
             </a>
         </div>
 
-        <!-- COMMUNITY / GAME ZONE -->
+        <!-- COMMUNITY BLOCK -->
         <div class="content-box">
-            <h3>Maze Runner / Q&A Zone</h3>
-            <p style="color: #888; margin-top: 10px;">Interactive games and fan quizzes are coming soon! Stay tuned.</p>
+            <h3>Interactive Zone</h3>
+            <p>Upcoming community quizzes and project updates are currently in development. More information will be available soon.</p>
         </div>
 
         <!-- BOTTOM AD (Format: 320x50) -->
