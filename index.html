@@ -1,32 +1,31 @@
 <!DOCTYPE html>
-<html lang="uz">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Newt.Editz Official</title>
+    <title>Newt.Editz | Official Hub & Game</title>
     <style>
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
             background: linear-gradient(135deg, #0f1026, #070814);
             color: #ffffff;
             margin: 0;
-            padding: 20px 0;
+            padding: 15px 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            box-sizing: border-box;
         }
 
-        /* Profil qismi */
+        /* Profile Section */
         .profile-area {
             text-align: center;
-            margin-top: 20px;
-            margin-bottom: 25px;
+            margin-bottom: 15px;
         }
-
         .avatar {
-            width: 90px;
-            height: 90px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             background: #1f2244;
             border: 2px solid #5d5fef;
@@ -34,178 +33,270 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 40px;
-            margin: 0 auto 15px auto;
+            font-size: 35px;
+            margin: 0 auto 10px auto;
+        }
+        h1 { font-size: 2em; margin: 0; color: #ffffff; }
+        .bio { color: #8b8eff; font-size: 0.95em; margin-top: 5px; }
+
+        /* AD ZONE (MONETIZATION) */
+        .ad-zone {
+            width: 90%;
+            max-width: 360px;
+            height: 80px;
+            background: #111222;
+            border: 1px dashed #5d5fef;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #555875;
+            font-size: 0.85em;
+            margin-bottom: 15px;
+            overflow: hidden;
         }
 
-        h1 {
-            font-size: 2.2em;
-            margin: 0;
-            letter-spacing: 0.5px;
-            color: #ffffff;
+        /* Game Box (Maze Runner) */
+        .game-box {
+            background: #15172c;
+            border: 2px solid #25284a;
+            border-radius: 20px;
+            padding: 15px;
+            width: 90%;
+            max-width: 360px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+        .game-box h3 { color: #00d2ff; margin-top: 0; margin-bottom: 5px; }
+        .game-box p { color: #b3b6d4; font-size: 0.85em; margin-bottom: 10px; }
+
+        /* Maze Area */
+        .maze-container {
+            width: 300px;
+            height: 300px;
+            background: #090a14;
+            border: 3px solid #5d5fef;
+            border-radius: 10px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Character (🎬 emoji) */
+        #player {
+            width: 25px;
+            height: 25px;
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            font-size: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.05s linear;
+            z-index: 10;
         }
 
-        .bio {
-            color: #8b8eff;
-            font-size: 1.05em;
-            margin-top: 5px;
-            font-weight: 500;
+        /* Finish */
+        #finish {
+            width: 30px;
+            height: 30px;
+            background: #00ff66;
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            font-weight: bold;
+            color: #000;
+            box-shadow: 0 0 10px #00ff66;
         }
 
-        /* Umumiy bokslar stili */
-        .box, .donate-box, .insta-box {
+        /* Walls */
+        .wall { background: #5d5fef; position: absolute; border-radius: 2px; }
+
+        /* Mobile Touch Controls */
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(3, 50px);
+            grid-template-rows: repeat(2, 45px);
+            gap: 5px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+        .ctrl-btn {
+            background: #25284a;
+            border: 1px solid #5d5fef;
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            user-select: none;
+        }
+        .ctrl-btn:active { background: #5d5fef; }
+        .up { grid-column: 2; }
+        .left { grid-column: 1; grid-row: 2; }
+        .down { grid-column: 2; grid-row: 2; }
+        .right { grid-column: 3; grid-row: 2; }
+
+        /* Donation Section */
+        .donate-box {
             background: #15172c;
             border: 1px solid #25284a;
             border-radius: 20px;
-            padding: 25px 20px;
-            width: 85%;
-            max-width: 380px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            margin-bottom: 20px;
+            padding: 20px;
+            width: 90%;
+            max-width: 360px;
+            text-align: center;
             box-sizing: border-box;
         }
-
-        h3 {
-            margin-top: 0;
-            font-size: 1.4em;
-            color: #00d2ff;
-            letter-spacing: 0.5px;
-            text-align: center;
-        }
-
-        p {
-            color: #b3b6d4;
-            font-size: 0.95em;
-            line-height: 1.5;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        /* Input va Textarea elementlari */
-        input[type="text"], textarea {
-            width: 100%;
-            background: #0f1021;
-            border: 1px solid #2d3163;
-            border-radius: 10px;
-            padding: 12px;
-            color: #fff;
-            margin-bottom: 12px;
-            font-size: 0.95em;
-            box-sizing: border-box;
-            outline: none;
-            transition: border 0.3s;
-        }
-
-        input[type="text"]:focus, textarea:focus {
-            border-color: #00d2ff;
-        }
-
-        textarea {
-            height: 80px;
-            resize: none;
-        }
-
-        /* Tugmalar */
-        .submit-btn {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(45deg, #5d5fef, #00d2ff);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-weight: bold;
-            font-size: 1em;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 210, 255, 0.2);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .submit-btn:hover {
-            transform: scale(1.02);
-            box-shadow: 0 4px 20px rgba(0, 210, 255, 0.4);
-        }
-
-        .coffee-btn {
-            width: 100%;
-            padding: 14px;
-            background: #00a8ff;
-            color: white;
-            border: none;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 1em;
-            cursor: pointer;
-            box-shadow: 0 0 15px rgba(0, 168, 255, 0.3);
-            transition: transform 0.2s;
-        }
-
-        .coffee-btn:hover {
-            transform: scale(1.02);
-        }
-
-        /* YANGI: Odamlarni qiziqtiradigan Instagram Boks */
-        .insta-box {
-            border: 1px solid #e1306c;
-            box-shadow: 0 0 15px rgba(225, 48, 108, 0.15);
-        }
+        .donate-box h3 { color: #ff9f43; margin-top: 0; }
+        .donate-box p { color: #b3b6d4; font-size: 0.85em; }
         
-        .insta-box h3 {
-            color: #e1306c;
-        }
-
-        .insta-btn {
+        .coffee-btn {
             display: block;
-            text-align: center;
             text-decoration: none;
             width: 100%;
             padding: 14px;
-            background: linear-gradient(45deg, #f9ce34, #ee2a7b, #6228d7);
+            background: linear-gradient(45deg, #ff9f43, #ff5252);
             color: white;
-            border-radius: 12px;
+            border-radius: 25px;
             font-weight: bold;
             font-size: 1em;
+            box-shadow: 0 4px 15px rgba(255, 159, 67, 0.3);
             box-sizing: border-box;
-            box-shadow: 0 4px 15px rgba(238, 42, 123, 0.2);
             transition: transform 0.2s;
         }
-
-        .insta-btn:hover {
-            transform: scale(1.02);
-        }
+        .coffee-btn:hover { transform: scale(1.02); }
     </style>
 </head>
 <body>
 
-    <!-- Profil qismi -->
+    <!-- Profile Area -->
     <div class="profile-area">
         <div class="avatar">🎬</div>
         <h1>Newt.Editz</h1>
-        <p class="bio">Digital Creator | Cinematic Video Editor</p>
+        <p class="bio">Digital Creator | Culinary of Codes & Edits</p>
     </div>
 
-    <!-- YANGI: Instagram bo'limi (Odamlarni jalb qilish uchun eng tepaga qo'yildi) -->
-    <div class="insta-box">
-        <h3>Watch Latest Edits ⚡</h3>
-        <p>Don't miss the newest cinematic masterpieces. Check out my recent works on Instagram!</p>
-        <a href="https://instagram.com/newt.editz" target="_blank" class="insta-btn">Explore My Feed 🍿</a>
+    <!-- 1st AD BANNER PLACEHOLDER -->
+    <div class="ad-zone">
+        <!-- PASTE YOUR ADSTERRA CODE HERE -->
+        <p>[ Advertisement / Ad Banner ]</p>
     </div>
 
-    <!-- Interaktiv quti (Q&A) -->
-    <div class="box">
-        <h3>Q&A & Shout-outs 💬</h3>
-        <p>Leave your Instagram handle and your question. Next story could be yours!</p>
+    <!-- MAZE RUNNER GAME -->
+    <div class="game-box">
+        <h3>Maze Runner Mini-Game 🏃‍♂️</h3>
+        <p>Reach the finish line (Green flag) without touching the walls!</p>
         
-        <input type="text" placeholder="Your Instagram (e.g. @user)">
-        <textarea placeholder="Your message or question..."></textarea>
-        <button class="submit-btn">Send Message</button>
+        <div class="maze-container" id="maze">
+            <!-- Our Character -->
+            <div id="player">🎬</div>
+            
+            <!-- Finish Checkpoint -->
+            <div id="finish">🏁</div>
+
+            <!-- Maze Walls -->
+            <div class="wall" style="width: 220px; height: 10px; top: 50px; left: 0;"></div>
+            <div class="wall" style="width: 10px; height: 130px; top: 50px; left: 210px;"></div>
+            <div class="wall" style="width: 150px; height: 10px; top: 130px; left: 0;"></div>
+            <div class="wall" style="width: 220px; height: 10px; top: 220px; left: 80px;"></div>
+            <div class="wall" style="width: 10px; height: 10px; top: 170px; left: 70px;"></div>
+        </div>
+
+        <!-- Mobile Joystick -->
+        <div class="controls">
+            <button class="ctrl-btn up" onclick="move('UP')">▲</button>
+            <button class="ctrl-btn left" onclick="move('LEFT')">◀</button>
+            <button class="ctrl-btn down" onclick="move('DOWN')">▼</button>
+            <button class="ctrl-btn right" onclick="move('RIGHT')">▶</button>
+        </div>
     </div>
 
-    <!-- Qo'llab-quvvatlash bo'limi -->
+    <!-- SUPPORT/DONATION BOX -->
     <div class="donate-box">
-        <h3>Support the Channel ⚡</h3>
-        <p>Enjoying the edits? Feel free to support my work, only if you want to. Keeping things independent!</p>
-        <button class="coffee-btn">Buy me a coffee ☕</button>
+        <h3>Support My PC Dream 💻</h3>
+        <p>Enjoying the game? Help me gather funds for my new editing & coding computer setup. Every support matters!</p>
+        <!-- PASTE YOUR DONATION LINK HERE (E.G. BUY ME A COFFEE / CRYPTO) -->
+        <a href="https://www.buymeacoffee.com/your_username" target="_blank" class="coffee-btn">Support with Donation 💳</a>
     </div>
 
+    <script>
+        const player = document.getElementById('player');
+        const maze = document.getElementById('maze');
+        const walls = document.querySelectorAll('.wall');
+        
+        let posX = 5;
+        let posY = 5;
+        const step = 15;
+
+        // Keyboard Controls
+        document.addEventListener('keydown', (e) => {
+            if(e.key === 'ArrowUp' || e.key === 'w') move('UP');
+            if(e.key === 'ArrowDown' || e.key === 's') move('DOWN');
+            if(e.key === 'ArrowLeft' || e.key === 'a') move('LEFT');
+            if(e.key === 'ArrowRight' || e.key === 'd') move('RIGHT');
+        });
+
+        function move(direction) {
+            let oldX = posX;
+            let oldY = posY;
+
+            if (direction === 'UP') posY -= step;
+            if (direction === 'DOWN') posY += step;
+            if (direction === 'LEFT') posX -= step;
+            if (direction === 'RIGHT') posX += step;
+
+            if (posX < 0 || posX > 275 || posY < 0 || posY > 275) {
+                posX = oldX;
+                posY = oldY;
+                return;
+            }
+
+            player.style.left = posX + 'px';
+            player.style.top = posY + 'px';
+
+            if (checkWallCollision()) {
+                posX = oldX;
+                posY = oldY;
+                player.style.left = posX + 'px';
+                player.style.top = posY + 'px';
+            }
+
+            if (posX >= 250 && posY >= 250) {
+                alert("Congratulations! You've successfully escaped the maze! 🔥🚀");
+                posX = 5;
+                posY = 5;
+                player.style.left = posX + 'px';
+                player.style.top = posY + 'px';
+            }
+        }
+
+        function checkWallCollision() {
+            const pRect = player.getBoundingClientRect();
+            let hit = false;
+            
+            walls.forEach(wall => {
+                const wRect = wall.getBoundingClientRect();
+                if (!(pRect.right < wRect.left || 
+                      pRect.left > wRect.right || 
+                      pRect.bottom < wRect.top || 
+                      pRect.top > wRect.bottom)) {
+                    hit = true;
+                }
+            });
+            return hit;
+        }
+    </script>
 </body>
 </html>
