@@ -4,33 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google" content="notranslate">
-    <title>Newt Editz | Premium Hub</title>
+    <title>Newt Editz | The Ultimate Hub</title>
     <style>
+        :root {
+            --bg-dark: #050608;
+            --card-bg: #0c0e12;
+            --card-border: #161a22;
+            --accent-cyan: #00f0ff;
+            --accent-pink: #ff007f;
+            --text-main: #f1f5f9;
+            --text-muted: #64748b;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            -webkit-tap-highlight-color: transparent;
         }
+
         body {
-            background-color: #060709;
-            color: #ffffff;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 15px;
+            overflow-x: hidden;
         }
+
         .container {
             width: 100%;
-            max-width: 440px;
+            max-width: 450px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 18px;
+            gap: 20px;
         }
-        
-        /* TOP AD ONLY */
+
+        /* ADS SYSTEM */
         .ad-container {
             width: 100%;
             display: flex;
@@ -39,81 +53,96 @@
             min-height: 60px;
         }
 
-        /* PROFIL */
+        /* HEADER & PROFIL */
         .profile-card {
             text-align: center;
-            margin-top: 5px;
+            position: relative;
+            cursor: pointer;
         }
         .avatar-glow {
-            width: 76px;
-            height: 76px;
+            width: 84px;
+            height: 84px;
             border-radius: 50%;
             margin: 0 auto 12px auto;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(45deg, #00ffff, #ff007f, #7f00ff);
-            padding: 2.5px;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.15);
+            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-pink), #7f00ff);
+            padding: 3px;
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.2);
+            transition: transform 0.4s ease;
+        }
+        .avatar-glow:transform {
+            transform: rotate(360deg);
         }
         .avatar-inner {
             width: 100%;
             height: 100%;
-            background-color: #060709;
+            background-color: var(--bg-dark);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.6rem;
-            font-weight: 800;
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: -1px;
         }
         .profile-card h1 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
+            font-size: 1.7rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #fff, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .profile-sub {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 4px;
         }
 
-        /* TAB MENU */
+        /* DYNAMIC NAV MENU */
         .tab-menu {
             display: flex;
             width: 100%;
-            background-color: #101216;
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
             padding: 6px;
-            border-radius: 12px;
-            gap: 5px;
+            border-radius: 14px;
+            gap: 4px;
         }
         .tab-btn {
             flex: 1;
             background: none;
             border: none;
-            color: #5f6c7d;
-            padding: 12px 10px;
-            font-size: 0.9rem;
-            font-weight: 600;
+            color: var(--text-muted);
+            padding: 12px 5px;
+            font-size: 0.85rem;
+            font-weight: 700;
             cursor: pointer;
-            border-radius: 8px;
-            transition: all 0.2s ease;
+            border-radius: 10px;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .tab-btn.active {
-            background-color: #191c24;
+            background-color: #171b24;
             color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
 
-        /* SAHIFALAR */
+        /* VIEWPORT MANAGEMENT */
         .tab-content {
             display: none;
             width: 100%;
-            animation: fadeIn 0.3s ease;
+            animation: slideUp 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .tab-content.active {
             display: block;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(12px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* LINKS */
+        /* LINKS PANEL */
         .links-wrapper {
             display: flex;
             flex-direction: column;
@@ -126,106 +155,234 @@
             justify-content: center;
             gap: 10px;
             width: 100%;
-            background-color: #101216;
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
             color: #e2e8f0;
             text-decoration: none;
             font-size: 1rem;
-            font-weight: 500;
-            padding: 16px;
-            border-radius: 12px;
+            font-weight: 600;
+            padding: 18px;
+            border-radius: 14px;
             transition: all 0.2s ease;
         }
         .custom-link:hover {
-            background-color: #191c24;
-            transform: translateY(-1px);
+            background-color: #12151c;
+            border-color: #222936;
+            transform: translateY(-2px);
         }
         .custom-link.main-btn {
             background: #ffffff;
-            color: #060709;
-            font-weight: 600;
+            color: var(--bg-dark);
+            border: none;
+            box-shadow: 0 4px 15px rgba(255,255,255,0.1);
         }
         .custom-link.main-btn:hover {
-            background: #f1f5f9;
+            background: #f8fafc;
         }
 
-        /* WORKING VIDEO PLAYER */
+        /* HIGH-END VIDEO INTERFACE */
         .video-container {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 18px;
+            border-radius: 18px;
+        }
+        .video-header {
             display: flex;
-            flex-direction: column;
-            gap: 12px;
-            background-color: #101216;
-            padding: 16px;
-            border-radius: 16px;
-            text-align: left;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
         }
-        .video-container h2 {
+        .video-header h2 {
             font-size: 1.1rem;
-            color: #00ffff;
+            font-weight: 700;
+            color: var(--accent-cyan);
         }
-        .video-iframe-wrapper {
+        .video-badge {
+            background: rgba(0, 240, 255, 0.1);
+            color: var(--accent-cyan);
+            font-size: 0.7rem;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .video-wrapper {
             position: relative;
             width: 100%;
             aspect-ratio: 16/9;
-            border-radius: 8px;
+            border-radius: 10px;
             overflow: hidden;
-            background-color: #000;
+            background: #000;
+            border: 1px solid rgba(255,255,255,0.02);
         }
-        .video-iframe-wrapper iframe {
+        .video-wrapper iframe {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
+            top: 0; left: 0; width: 100%; height: 100%; border: 0;
         }
 
-        /* QUIZ ZONE */
+        /* 15 QIYIN SAVOLLI INTERAKTIV QUIZ ENGINE */
         .quiz-card {
-            background-color: #101216;
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
             padding: 24px;
-            border-radius: 16px;
-            text-align: center;
+            border-radius: 18px;
+        }
+        .quiz-header-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            font-weight: 600;
         }
         .quiz-card h2 {
             font-size: 1.15rem;
-            margin-bottom: 15px;
+            font-weight: 700;
             line-height: 1.4;
+            margin-bottom: 18px;
         }
         .quiz-options {
             display: flex;
             flex-direction: column;
             gap: 10px;
-            margin-top: 15px;
         }
         .option-btn {
-            background-color: #191c24;
-            border: 1px solid rgba(255,255,255,0.02);
-            color: #ffffff;
-            padding: 14px;
-            border-radius: 10px;
+            background-color: #11141b;
+            border: 1px solid var(--card-border);
+            color: #cbd5e1;
+            padding: 15px;
+            border-radius: 12px;
             cursor: pointer;
             font-size: 0.95rem;
             text-align: left;
-            transition: background 0.2s;
+            font-weight: 500;
+            transition: all 0.15s ease;
         }
         .option-btn:hover {
-            background-color: #232834;
+            background-color: #171c26;
+            border-color: #2d3748;
+            color: #fff;
         }
-        .score-text {
-            font-size: 1.4rem;
-            color: #00ffff;
+        .score-display-panel {
+            text-align: center;
+            padding: 10px 0;
+        }
+        .score-num {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 10px 0;
+        }
+        .rank-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.05);
+            padding: 6px 14px;
+            border-radius: 20px;
             font-weight: 700;
-            margin-top: 15px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.02);
         }
         .restart-btn {
-            margin-top: 20px;
             background-color: #ffffff;
-            color: #060709;
+            color: var(--bg-dark);
             border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-weight: 600;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: 700;
             cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        /* REAL-TIME FAN COMMENTS MATRIX */
+        .comments-section {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 20px;
+            border-radius: 18px;
+            width: 100%;
+        }
+        .comments-section h3 {
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        .comment-input-box {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        .comment-input-box input {
+            flex: 1;
+            background-color: #11141b;
+            border: 1px solid var(--card-border);
+            border-radius: 10px;
+            padding: 12px;
+            color: #fff;
+            font-size: 0.9rem;
+            outline: none;
+        }
+        .comment-input-box input:focus {
+            border-color: var(--accent-cyan);
+        }
+        .comment-submit-btn {
+            background-color: var(--text-main);
+            color: var(--bg-dark);
+            border: none;
+            padding: 0 16px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .comments-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 220px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+        .comments-feed::-webkit-scrollbar {
+            width: 4px;
+        }
+        .comments-feed::-webkit-scrollbar-thumb {
+            background: var(--card-border);
+            border-radius: 2px;
+        }
+        .single-comment {
+            background-color: #11141b;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            animation: fadeIn 0.3s ease;
+        }
+        .comment-author {
+            color: var(--accent-cyan);
+            font-weight: 700;
+            margin-bottom: 2px;
+            font-size: 0.8rem;
+        }
+
+        /* SECRET EASTER EGG ALERT */
+        #secret-toast {
+            position: fixed;
+            bottom: 20px;
+            background: linear-gradient(45deg, #101216, #1a1e26);
+            border: 1px solid var(--accent-cyan);
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: none;
+            z-index: 10000;
+            animation: slideUp 0.3s ease;
         }
     </style>
 </head>
@@ -233,7 +390,7 @@
 
     <div class="container">
         
-        <!-- TEPADAGI REKLAMA (FAQAT BITTA) -->
+        <!-- FAQAT BITTA STRATEGIK REKLAMA -->
         <div class="ad-container">
             <script>
               atOptions = { 'key' : '8af8bc96a450214b8f6ac012954792f0', 'format' : 'iframe', 'height' : 60, 'width' : 468, 'params' : {} };
@@ -241,20 +398,21 @@
             <script src="https://www.highperformanceformat.com/8af8bc96a450214b8f6ac012954792f0/invoke.js"></script>
         </div>
 
-        <!-- PROFIL -->
-        <div class="profile-card">
+        <!-- HEADER / PROFIL (MAXFIY BOSISH DETEKTORI BOR) -->
+        <div class="profile-card" onclick="triggerEasterEgg()">
             <div class="avatar-glow"><div class="avatar-inner">N</div></div>
             <h1>Newt Editz</h1>
+            <div class="profile-sub">Cinematic & Creative Hub</div>
         </div>
 
-        <!-- TAB MENU -->
+        <!-- ADVANCED NAVIGATION -->
         <div class="tab-menu">
             <button class="tab-btn active" onclick="openTab('home')">Links</button>
-            <button class="tab-btn" onclick="openTab('edits')">Latest Edits</button>
-            <button class="tab-btn" onclick="openTab('quiz')">Fan Quiz 🎮</button>
+            <button class="tab-btn" onclick="openTab('edits')">Stream</button>
+            <button class="tab-btn" onclick="openTab('quiz')">Survival Quiz 🎮</button>
         </div>
 
-        <!-- 1-SAHIFA: LINKS -->
+        <!-- TAB 1: LINKS -->
         <div id="home" class="tab-content active">
             <div class="links-wrapper">
                 <a href="https://www.donationalerts.com/r/newt_editz" target="_blank" class="custom-link main-btn">
@@ -266,30 +424,54 @@
             </div>
         </div>
 
-        <!-- 2-SAHIFA: WORKING VIDEO PLAYER -->
+        <!-- TAB 2: CLEAN VIDEO STREAM (NO MUSIC CRINGE) -->
         <div id="edits" class="tab-content">
             <div class="video-container">
-                <h2>Featured Cinematic Edit</h2>
-                <p style="font-size: 0.85rem; color: #5f6c7d; margin-bottom: 5px;">Stream directly inside the web hub</p>
-                <div class="video-iframe-wrapper">
-                    <!-- SIZNING TAYYOR CINEMATIC VIDEONGIZ (YouTube orqali silliq ishlaydi) -->
+                <div class="video-header">
+                    <h2>Featured Visuals</h2>
+                    <div class="video-badge">4K Cinematic</div>
+                </div>
+                <div class="video-wrapper">
+                    <!-- SIZNING ASOSIY VIDEONGIZ SHU YERDA AYLANADI -->
                     <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
                 </div>
             </div>
         </div>
 
-        <!-- 3-SAHIFA: 10 SAVOLLI INTERAKTIV O'YIN -->
+        <!-- TAB 3: 15 HARDCORE MAZE RUNNER SAVOLLARI -->
         <div id="quiz" class="tab-content">
             <div class="quiz-card" id="quiz-box">
-                <p style="color: #5f6c7d; font-size: 0.85rem; margin-bottom: 5px;" id="question-number">Question 1 of 10</p>
-                <h2 id="question-text">Loading Maze...</h2>
+                <div class="quiz-header-meta">
+                    <span id="question-number">Question 1 of 15</span>
+                    <span id="live-accuracy">Accuracy: 100%</span>
+                </div>
+                <h2 id="question-text">Initializing the Maze...</h2>
                 <div class="quiz-options" id="options-container"></div>
+            </div>
+        </div>
+
+        <!-- LIVE ENGAGEMENT: FAN MUHOKAMASI (COMMENTS MATRIX) -->
+        <div class="comments-section">
+            <h3>Glade Discussion 💬</h3>
+            <div class="comment-input-box">
+                <input type="text" id="comment-input" placeholder="Type a message to the Gladers..." maxlength="100">
+                <button class="comment-submit-btn" onclick="addComment()">Send</button>
+            </div>
+            <div class="comments-feed" id="comments-box">
+                <!-- Oldindan kiritilgan premium daxshatli kommentlar (Odam ko'paytirib ko'rsatadi) -->
+                <div class="single-comment"><div class="comment-author">Runner_X</div>Your edits are literally insane bro! Keep it up 🔥</div>
+                <div class="single-comment"><div class="comment-author">Thomas_A1</div>The quiz is incredibly hard, I only scored 11/15!</div>
+                <div class="single-comment"><div class="comment-author">WCKD_Fan</div>Best Maze Runner platform on the internet right now.</div>
             </div>
         </div>
 
     </div>
 
+    <!-- EASTER EGG NOTIFICATION TOAST -->
+    <div id="secret-toast">WCKD is Good. You found the hidden code 🔑</div>
+
     <script>
+        // TAB NAVIGATION TIZIMI
         function openTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -297,18 +479,23 @@
             event.currentTarget.classList.add('active');
         }
 
-        // 10 TA MAZE RUNNER SAVOLLARI
+        // 15 TA ENG QIYIN MAZE RUNNER SAVOLLARI MATRIXI
         const quizData = [
-            { question: "What is Newt's official role in the Glade?", options: ["Runner", "Second-in-Command", "Keeper of the Blood House"], correct: 1 },
-            { question: "Who was the very first person to enter the Glade?", options: ["Alby", "Minho", "Newt"], correct: 0 },
-            { question: "What code word is tattooed on Newt's neck by WCKD?", options: ["The Glue", "The Partner", "The Leader"], correct: 0 },
-            { question: "Which weapon does Minho prefer to use?", options: ["Machete", "Spear", "Bow and Arrow"], correct: 0 },
-            { question: "What happens to a Glader if they are stung by a Griever?", options: ["They turn into a Griever", "They undergo 'The Changing'", "They instantly die"], correct: 1 },
-            { question: "What is the name of the final safe haven city in the Death Cure?", options: ["The Last City", "Denver", "Sanctuary"], correct: 0 },
-            { question: "Who kills Chuck in the first movie/book?", options: ["Gally", "Ben", "A Griever"], correct: 0 },
-            { question: "What are the mechanical monsters inside the Maze called?", options: ["Cranks", "Grievers", "Beasts"], correct: 1 },
-            { question: "What is Newt's sister's name?", options: ["Teresa", "Sonya", "Harriet"], correct: 1 },
-            { question: "Why is Newt immune or not immune to the Flare virus?", options: ["He is completely immune", "He is NOT immune (Subject A5)", "He has the vaccine"], correct: 1 }
+            { question: "What is Newt's official rank/title in the Glade hierarchy?", options: ["Keeper of the Runners", "Second-in-Command", "The First Glader"], correct: 1 },
+            { question: "Who was the very first person to ever enter and survive the Glade?", options: ["Alby", "Minho", "Nick"], correct: 0 },
+            { question: "What specific subject designation code did WCKD give to Newt?", options: ["Subject A5 (The Glue)", "Subject A2 (The Leader)", "Subject B7 (The Partner)"], correct: 0 },
+            { question: "Which unique weapon does Minho master throughout the trials?", options: ["Machete", "Wooden Spear", "Crossbow"], correct: 0 },
+            { question: "What brutal physiological process occurs after a Griever stings someone?", options: ["Instant paralysis", "The Changing", "Immediate cell death"], correct: 1 },
+            { question: "What is the name of the final heavily protected city in The Death Cure?", options: ["The Last City", "Sector 7", "Denver Haven"], correct: 0 },
+            { question: "Who tragically shoots Chuck in the final stage of the Maze trial?", options: ["Gally", "Ben", "A disguised guard"], correct: 0 },
+            { question: "What biological components make up a Griever?", options: ["Pure metal and steel", "Mechanical and organic parts", "Cybernetic alien cells"], correct: 1 },
+            { question: "What is Newt's biological sister's name discovered in Group B?", options: ["Teresa", "Sonya", "Harriet"], correct: 1 },
+            { question: "Why is Newt fundamentally different from Thomas and Minho regarding the Flare?", options: ["He is fully immune", "He is NOT immune to the virus", "He is the source of the cure"], correct: 1 },
+            { question: "What did the creators write on the walls when Teresa arrived?", options: ["She's the last one. Ever.", "WCKD is good.", "The end is near."], correct: 0 },
+            { question: "What was the name of the maze sector that opened first every morning?", options: ["Sector 1", "Sector 7", "The Blades"], correct: 0 },
+            { question: "Who was the leader of the rogue rebel force known as 'The Right Arm'?", options: ["Jorge", "Vince", "Marcus"], correct: 1 },
+            { question: "What serum is required to halt or slow down the Crank infection?", options: ["The Flare-X", "The Bliss", "The Cure V2"], correct: 1 },
+            { question: "What are the giant, catastrophic storms in the Scorch called?", options: ["Lightning Vortex", "Lightning Storms", "Ionizing Blasts"], correct: 1 }
         ];
 
         let currentQuestion = 0;
@@ -318,6 +505,10 @@
             const quizBox = document.getElementById('quiz-box');
             if (currentQuestion < quizData.length) {
                 document.getElementById('question-number').innerText = `Question ${currentQuestion + 1} of ${quizData.length}`;
+                
+                let accuracy = currentQuestion === 0 ? 100 : Math.round((score / currentQuestion) * 100);
+                document.getElementById('live-accuracy').innerText = `Accuracy: ${accuracy}%`;
+                
                 document.getElementById('question-text').innerText = quizData[currentQuestion].question;
                 
                 const optionsContainer = document.getElementById('options-container');
@@ -332,38 +523,7 @@
                 });
             } else {
                 let rank = "Greenie 🌱";
-                if(score >= 4 && score <= 6) rank = "Glader 🔨";
-                if(score >= 7 && score <= 9) rank = "Expert Runner 🏃‍♂️";
-                if(score === 10) rank = "Glade Leader / The Glue ⚡";
-                
-                quizBox.innerHTML = `
-                    <h2>Quiz Completed!</h2>
-                    <p class="score-text">${score} / ${quizData.length} Correct</p>
-                    <p style="color: #8a8d93; margin-top: 10px;">Your Title: <strong>${rank}</strong></p>
-                    <button class="restart-btn" onclick="restartQuiz()">Try Again</button>
-                `;
-            }
-        }
-
-        function checkAnswer(selectedIndex) {
-            if (selectedIndex === quizData[currentQuestion].correct) { score++; }
-            currentQuestion++;
-            loadQuiz();
-        }
-
-        function restartQuiz() {
-            currentQuestion = 0;
-            score = 0;
-            document.getElementById('quiz-box').innerHTML = `
-                <p style="color: #5f6c7d; font-size: 0.85rem; margin-bottom: 5px;" id="question-number">Question 1 of 10</p>
-                <h2 id="question-text">Loading...</h2>
-                <div class="quiz-options" id="options-container"></div>
-            `;
-            loadQuiz();
-        }
-
-        loadQuiz();
-    </script>
-
-</body>
-</html>
+                let color = "#ef4444";
+                if(score >= 6 && score <= 10) { rank = "Glader 🔨"; color = "#f59e0b"; }
+                if(score >= 11 && score <= 14) { rank = "Elite Runner 🏃‍♂️"; color = "#10b981"; }
+                if(score === 15) { rank = "The Glue / WCKD Leader ⚡"
