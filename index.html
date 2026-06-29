@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Newt.Editz | Official Hub & Game</title>
+    <title>Newt.Editz | Creator Hub</title>
     <style>
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
             background: linear-gradient(135deg, #0f1026, #070814);
             color: #ffffff;
             margin: 0;
-            padding: 15px 0;
+            padding: 20px 0;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -18,285 +18,168 @@
             box-sizing: border-box;
         }
 
-        /* Profile Section */
-        .profile-area {
-            text-align: center;
-            margin-bottom: 15px;
-        }
+        .profile-area { text-align: center; margin-bottom: 20px; }
         .avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: #1f2244;
-            border: 2px solid #5d5fef;
-            box-shadow: 0 0 20px rgba(93, 95, 239, 0.4);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 35px;
-            margin: 0 auto 10px auto;
+            width: 85px; height: 85px; border-radius: 50%; background: #1f2244;
+            border: 2px solid #5d5fef; box-shadow: 0 0 20px rgba(93, 95, 239, 0.4);
+            display: flex; justify-content: center; align-items: center;
+            font-size: 38px; margin: 0 auto 12px auto;
         }
-        h1 { font-size: 2em; margin: 0; color: #ffffff; }
-        .bio { color: #8b8eff; font-size: 0.95em; margin-top: 5px; }
+        h1 { font-size: 2.2em; margin: 0; color: #ffffff; }
+        .bio { color: #8b8eff; font-size: 1em; margin-top: 5px; }
 
-        /* AD ZONE (MONETIZATION) */
+        /* AD ZONES */
         .ad-zone {
-            width: 90%;
-            max-width: 360px;
-            height: 80px;
-            background: #111222;
-            border: 1px dashed #5d5fef;
-            border-radius: 12px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #555875;
-            font-size: 0.85em;
-            margin-bottom: 15px;
-            overflow: hidden;
+            width: 90%; max-width: 380px; height: 90px; background: #111222;
+            border: 1px dashed #5d5fef; border-radius: 15px; display: flex;
+            justify-content: center; align-items: center; color: #555875;
+            font-size: 0.85em; margin-bottom: 20px;
         }
 
-        /* Game Box (Maze Runner) */
-        .game-box {
-            background: #15172c;
-            border: 2px solid #25284a;
-            border-radius: 20px;
-            padding: 15px;
-            width: 90%;
-            max-width: 360px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            text-align: center;
-            margin-bottom: 15px;
-            box-sizing: border-box;
+        /* Tool Box */
+        .card-box {
+            background: #15172c; border: 1px solid #25284a; border-radius: 20px;
+            padding: 22px; width: 90%; max-width: 380px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); margin-bottom: 20px;
+            box-sizing: border-box; text-align: center;
         }
-        .game-box h3 { color: #00d2ff; margin-top: 0; margin-bottom: 5px; }
-        .game-box p { color: #b3b6d4; font-size: 0.85em; margin-bottom: 10px; }
+        .card-box h3 { margin-top: 0; font-size: 1.3em; color: #00d2ff; }
+        .card-box p { color: #b3b6d4; font-size: 0.9em; margin-bottom: 15px; }
 
-        /* Maze Area */
-        .maze-container {
-            width: 300px;
-            height: 300px;
-            background: #090a14;
-            border: 3px solid #5d5fef;
-            border-radius: 10px;
-            margin: 0 auto;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        /* Character (🎬 emoji) */
-        #player {
-            width: 25px;
-            height: 25px;
-            position: absolute;
-            top: 5px;
-            left: 5px;
-            font-size: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: all 0.05s linear;
-            z-index: 10;
+        /* Preview Canvas */
+        #wallpaper-canvas {
+            width: 100%; max-width: 280px; height: 400px;
+            background: #000; border-radius: 12px; margin: 15px auto;
+            border: 2px solid #5d5fef; display: block;
         }
 
-        /* Finish */
-        #finish {
-            width: 30px;
-            height: 30px;
-            background: #00ff66;
-            position: absolute;
-            bottom: 5px;
-            right: 5px;
-            border-radius: 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 16px;
-            font-weight: bold;
-            color: #000;
-            box-shadow: 0 0 10px #00ff66;
+        input[type="text"], select {
+            width: 100%; padding: 12px; background: #090a14; border: 1px solid #25284a;
+            color: white; border-radius: 8px; margin-bottom: 12px; box-sizing: border-box;
         }
 
-        /* Walls */
-        .wall { background: #5d5fef; position: absolute; border-radius: 2px; }
-
-        /* Mobile Touch Controls */
-        .controls {
-            display: grid;
-            grid-template-columns: repeat(3, 50px);
-            grid-template-rows: repeat(2, 45px);
-            gap: 5px;
-            justify-content: center;
-            margin-top: 15px;
-        }
-        .ctrl-btn {
-            background: #25284a;
-            border: 1px solid #5d5fef;
-            color: white;
-            font-size: 1.2em;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            user-select: none;
-        }
-        .ctrl-btn:active { background: #5d5fef; }
-        .up { grid-column: 2; }
-        .left { grid-column: 1; grid-row: 2; }
-        .down { grid-column: 2; grid-row: 2; }
-        .right { grid-column: 3; grid-row: 2; }
-
-        /* Donation Section */
-        .donate-box {
-            background: #15172c;
-            border: 1px solid #25284a;
-            border-radius: 20px;
-            padding: 20px;
-            width: 90%;
-            max-width: 360px;
-            text-align: center;
-            box-sizing: border-box;
-        }
-        .donate-box h3 { color: #ff9f43; margin-top: 0; }
-        .donate-box p { color: #b3b6d4; font-size: 0.85em; }
-        
-        .coffee-btn {
-            display: block;
-            text-decoration: none;
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(45deg, #ff9f43, #ff5252);
-            color: white;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 1em;
-            box-shadow: 0 4px 15px rgba(255, 159, 67, 0.3);
-            box-sizing: border-box;
+        .btn {
+            display: block; text-align: center; text-decoration: none; width: 100%;
+            padding: 14px; color: white; border-radius: 12px; font-weight: bold;
+            font-size: 0.95em; box-sizing: border-box; cursor: pointer; border: none;
             transition: transform 0.2s;
         }
-        .coffee-btn:hover { transform: scale(1.02); }
+        .btn:hover { transform: scale(1.02); }
+        .btn-blue { background: linear-gradient(45deg, #00d2ff, #5d5fef); }
+        .btn-orange { background: linear-gradient(45deg, #ff9f43, #ff5252); border-radius: 25px; }
     </style>
 </head>
 <body>
 
-    <!-- Profile Area -->
     <div class="profile-area">
         <div class="avatar">🎬</div>
         <h1>Newt.Editz</h1>
-        <p class="bio">Digital Creator | Culinary of Codes & Edits</p>
+        <p class="bio">Digital Creator Hub</p>
     </div>
 
-    <!-- 1st AD BANNER PLACEHOLDER -->
+    <!-- TOP AD ZONE -->
     <div class="ad-zone">
-        <!-- PASTE YOUR ADSTERRA CODE HERE -->
+        <p>[ Advertisement / High CPM Banner ]</p>
+    </div>
+
+    <!-- WALLPAPER GENERATOR TOOL -->
+    <div class="card-box">
+        <h3>🎨 Aesthetic Wallpaper Generator</h3>
+        <p>Create your custom high-quality cyberpunk text wallpaper instantly!</p>
+        
+        <!-- Canvas for drawing -->
+        <canvas id="wallpaper-canvas" width="1080" height="1920"></canvas>
+
+        <input type="text" id="wall-text" placeholder="Enter Your Name / IG (e.g. Newt)" value="Newt">
+        
+        <select id="wall-bg" onchange="generateWallpaper()">
+            <option value="cyber">Cyberpunk Purple Glow</option>
+            <option value="dark">Minimalist Deep Dark</option>
+            <option value="fire">Neon Orange Fire</option>
+        </select>
+
+        <button class="btn btn-blue" id="download-btn">Download HD Wallpaper 📥</button>
+    </div>
+
+    <!-- BOTTOM AD ZONE -->
+    <div class="ad-zone">
         <p>[ Advertisement / Ad Banner ]</p>
     </div>
 
-    <!-- MAZE RUNNER GAME -->
-    <div class="game-box">
-        <h3>Maze Runner Mini-Game 🏃‍♂️</h3>
-        <p>Reach the finish line (Green flag) without touching the walls!</p>
-        
-        <div class="maze-container" id="maze">
-            <!-- Our Character -->
-            <div id="player">🎬</div>
-            
-            <!-- Finish Checkpoint -->
-            <div id="finish">🏁</div>
-
-            <!-- Maze Walls -->
-            <div class="wall" style="width: 220px; height: 10px; top: 50px; left: 0;"></div>
-            <div class="wall" style="width: 10px; height: 130px; top: 50px; left: 210px;"></div>
-            <div class="wall" style="width: 150px; height: 10px; top: 130px; left: 0;"></div>
-            <div class="wall" style="width: 220px; height: 10px; top: 220px; left: 80px;"></div>
-            <div class="wall" style="width: 10px; height: 10px; top: 170px; left: 70px;"></div>
-        </div>
-
-        <!-- Mobile Joystick -->
-        <div class="controls">
-            <button class="ctrl-btn up" onclick="move('UP')">▲</button>
-            <button class="ctrl-btn left" onclick="move('LEFT')">◀</button>
-            <button class="ctrl-btn down" onclick="move('DOWN')">▼</button>
-            <button class="ctrl-btn right" onclick="move('RIGHT')">▶</button>
-        </div>
-    </div>
-
-    <!-- SUPPORT/DONATION BOX -->
-    <div class="donate-box">
-        <h3>Support My PC Dream 💻</h3>
-        <p>Enjoying the game? Help me gather funds for my new editing & coding computer setup. Every support matters!</p>
-        <!-- PASTE YOUR DONATION LINK HERE (E.G. BUY ME A COFFEE / CRYPTO) -->
-        <a href="https://www.buymeacoffee.com/your_username" target="_blank" class="coffee-btn">Support with Donation 💳</a>
+    <!-- DONATION BOX -->
+    <div class="card-box" style="border: 1px solid #ff9f43;">
+        <h3 style="color: #ff9f43;">💻 Support My PC Dream</h3>
+        <p>I build free web tools for creators. If you like this generator, help me reach my goal for a new setup!</p>
+        <a href="https://www.buymeacoffee.com/your_username" target="_blank" class="btn btn-orange">Support with Donation 💳</a>
     </div>
 
     <script>
-        const player = document.getElementById('player');
-        const maze = document.getElementById('maze');
-        const walls = document.querySelectorAll('.wall');
-        
-        let posX = 5;
-        let posY = 5;
-        const step = 15;
+        const canvas = document.getElementById('wallpaper-canvas');
+        const ctx = canvas.getContext('2d');
+        const textInput = document.getElementById('wall-text');
+        const bgSelect = document.getElementById('wall-bg');
+        const downloadBtn = document.getElementById('download-btn');
 
-        // Keyboard Controls
-        document.addEventListener('keydown', (e) => {
-            if(e.key === 'ArrowUp' || e.key === 'w') move('UP');
-            if(e.key === 'ArrowDown' || e.key === 's') move('DOWN');
-            if(e.key === 'ArrowLeft' || e.key === 'a') move('LEFT');
-            if(e.key === 'ArrowRight' || e.key === 'd') move('RIGHT');
+        // Canvashga rasm chizish funksiyasi
+        function generateWallpaper() {
+            const text = textInput.value || "Newt";
+            const bgType = bgSelect.value;
+
+            // Background uslublari
+            if (bgType === 'cyber') {
+                let grad = ctx.createLinearGradient(0, 0, 0, 1920);
+                grad.addColorStop(0, '#0f0c20');
+                grad.addColorStop(0.5, '#151035');
+                grad.addColorStop(1, '#070510');
+                ctx.fillStyle = grad;
+                ctx.fillRect(0, 0, 1080, 1920);
+
+                // Neon chiziqlar effekti
+                ctx.strokeStyle = 'rgba(93, 95, 239, 0.2)';
+                ctx.lineWidth = 5;
+                for(let i=0; i<1080; i+=100) {
+                    ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, 1920); ctx.stroke();
+                }
+                
+                // Matn stili
+                ctx.font = "bold 90px 'Segoe UI', Arial";
+                ctx.fillStyle = '#00d2ff';
+                ctx.shadowColor = '#00d2ff';
+                ctx.shadowBlur = 40;
+            } else if (bgType === 'dark') {
+                ctx.fillStyle = '#050508';
+                ctx.fillRect(0, 0, 1080, 1920);
+                ctx.font = "300 80px 'Segoe UI', Arial";
+                ctx.fillStyle = '#ffffff';
+                ctx.shadowBlur = 0;
+            } else if (bgType === 'fire') {
+                ctx.fillStyle = '#0d0600';
+                ctx.fillRect(0, 0, 1080, 1920);
+                ctx.font = "italic bold 100px sans-serif";
+                ctx.fillStyle = '#ff9f43';
+                ctx.shadowColor = '#ff5252';
+                ctx.shadowBlur = 50;
+            }
+
+            // Matnni markazga joylashtirish
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText(text.toUpperCase(), 540, 960);
+        }
+
+        // Input o'zgarganda srazy yangilash
+        textInput.addEventListener('input', generateWallpaper);
+        
+        // Yuklab olish tugmasi bosilganda
+        downloadBtn.addEventListener('click', () => {
+            const link = document.createElement('a');
+            link.download = 'newt_editz_wallpaper.png';
+            link.href = canvas.toDataURL();
+            link.click();
         });
 
-        function move(direction) {
-            let oldX = posX;
-            let oldY = posY;
-
-            if (direction === 'UP') posY -= step;
-            if (direction === 'DOWN') posY += step;
-            if (direction === 'LEFT') posX -= step;
-            if (direction === 'RIGHT') posX += step;
-
-            if (posX < 0 || posX > 275 || posY < 0 || posY > 275) {
-                posX = oldX;
-                posY = oldY;
-                return;
-            }
-
-            player.style.left = posX + 'px';
-            player.style.top = posY + 'px';
-
-            if (checkWallCollision()) {
-                posX = oldX;
-                posY = oldY;
-                player.style.left = posX + 'px';
-                player.style.top = posY + 'px';
-            }
-
-            if (posX >= 250 && posY >= 250) {
-                alert("Congratulations! You've successfully escaped the maze! 🔥🚀");
-                posX = 5;
-                posY = 5;
-                player.style.left = posX + 'px';
-                player.style.top = posY + 'px';
-            }
-        }
-
-        function checkWallCollision() {
-            const pRect = player.getBoundingClientRect();
-            let hit = false;
-            
-            walls.forEach(wall => {
-                const wRect = wall.getBoundingClientRect();
-                if (!(pRect.right < wRect.left || 
-                      pRect.left > wRect.right || 
-                      pRect.bottom < wRect.top || 
-                      pRect.top > wRect.bottom)) {
-                    hit = true;
-                }
-            });
-            return hit;
-        }
+        // Birinchi marta yuklanganda ishga tushirish
+        window.onload = generateWallpaper;
     </script>
 </body>
 </html>
